@@ -6287,8 +6287,9 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
 
 (async function run() {
   const tags = await gh.paginate(gh.repos.listTags, args);
-  const releaseTag = tags.find(({ commit }) => commit.sha === context.payload.commits[0].id);
+  const releaseTag = tags.find(({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 1].id);
 
+  console.log('releaseTag', releaseTag);
   console.log('tags', tags);
   console.log('context.payload.commits', context.payload.commits);
 
