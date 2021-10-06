@@ -3942,7 +3942,7 @@ function fetchWrapper(requestOptions) {
         body: requestOptions.body,
         headers: requestOptions.headers,
         redirect: requestOptions.redirect,
-    }, 
+    },
     // `requestOptions.request.agent` type is incompatible
     // see https://github.com/octokit/types.ts/pull/264
     requestOptions.request))
@@ -6287,7 +6287,7 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
 
 (async function run() {
   const tags = await gh.paginate(gh.repos.listTags, args);
-  const releaseTag = tags.find(({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 1].id);
+  const releaseTag = tags.find(({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 2].id);
 
   console.log('releaseTag', releaseTag);
   console.log('tags', tags);
