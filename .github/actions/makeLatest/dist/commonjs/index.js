@@ -6289,6 +6289,9 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
   const tags = await gh.paginate(gh.repos.listTags, args);
   const releaseTag = tags.find(({ commit }) => commit.sha === context.payload.commits[0].id);
 
+  console.log('tags', tags);
+  console.log('context.payload.commits', context.payload.commits);
+
   if (releaseTag) {
     core_14('releaseTag', releaseTag.name);
     core_14('packageName', repository.name);
