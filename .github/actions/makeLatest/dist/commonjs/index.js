@@ -549,7 +549,7 @@ core.debug;
 core.isDebug;
 core.setFailed;
 core.setCommandEcho;
-var core_14 = core.setOutput;
+core.setOutput;
 core.getBooleanInput;
 core.getMultilineInput;
 core.getInput;
@@ -6286,16 +6286,17 @@ const gh = github_1(process.env.GITHUB_TOKEN);
 const args = { owner: owner.name || owner.login, repo: repository.name };
 
 const getAllTags = async () => {
-  const { data } = await gh.paginate(gh.repos.listTags, args);
-  return data;
+  const result = await gh.paginate(gh.repos.listTags, args);
+  console.log('result', result);
+  return result;
 };
 
 (async function run() {
-  const tags = await getAllTags();
-  const releaseTag = tags.find(({ commit }) => commit.sha === context.payload.commits[0].id);
+  await getAllTags();
+  // const releaseTag = tags.find(({ commit }) => commit.sha === context.payload.commits[0].id);
 
-  if (releaseTag) {
-    core_14('releaseTag', releaseTag.name);
-    core_14('packageName', repository.name);
-  }
+  // if (releaseTag) {
+  //   core.setOutput('releaseTag', releaseTag.name);
+  //   core.setOutput('packageName', repository.name);
+  // }
 }());
