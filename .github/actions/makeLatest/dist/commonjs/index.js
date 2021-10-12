@@ -6292,7 +6292,7 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
   );
 
   if (releaseTag) {
-    core_14('releaseTag', releaseTag.name);
-    core_14('packageName', repository.name);
+    core_14('version', releaseTag.name); // 1.1.1
+    core_14('packageName', repository.name); // any package name
   }
 }());
